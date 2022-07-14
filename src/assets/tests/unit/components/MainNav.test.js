@@ -22,3 +22,24 @@ describe("MainNav", () => {
     ]);
   });
 });
+
+describe("when user is logged out", () => {
+  it("prompts user sign in", () => {
+    const wrapper = mount(MainNav);
+    const loginButton = wrapper.find("[data-test='login-button']");
+    expect(loginButton.exists()).toBe(true);
+  });
+});
+
+describe("when user logs in", () => {
+  it("display user profile picture", async () => {
+    const wrapper = mount(MainNav);
+    let profileImage = wrapper.find("[data-test='profile-image']");
+    expect(profileImage.exists()).toBe(false);
+
+    const loginButton = wrapper.find("[data-test='login-button']");
+    await loginButton.trigger("click");
+    profileImage = wrapper.find("[data-test='profile-image']");
+    expect(profileImage.exists()).toBe(true);
+  });
+});
