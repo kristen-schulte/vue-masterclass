@@ -12,22 +12,8 @@
             <li class="h-full">
               <a href="" class="flex items-center h-full py-2.5">Teams</a>
             </li>
-            <li class="h-full ml-9">
-              <a href="" class="flex items-center h-full py-2.5">Locations</a>
-            </li>
-            <li class="h-full ml-9">
-              <a href="" class="flex items-center h-full py-2.5"
-                >Life at Brand Careers</a
-              >
-            </li>
-            <li class="h-full ml-9">
-              <a href="" class="flex items-center h-full py-2.5">How we hire</a>
-            </li>
-            <li class="h-full ml-9">
-              <a href="" class="flex items-center h-full py-2.5">Students</a>
-            </li>
-            <li class="h-full ml-9">
-              <a href="" class="flex items-center h-full py-2.5">Jobs</a>
+            <li v-for="item in menuItems" :key="item" class="h-full ml-9">
+              <a href="" class="flex items-center h-full py-2.5">{{ item }}</a>
             </li>
           </ul>
         </nav>
@@ -43,6 +29,14 @@ export default {
     return {
       company: "Brand Careers",
       url: "https://careers.google.com",
+      menuItems: [
+        "Teams",
+        "Locations",
+        "Life at Brand",
+        "How we hire",
+        "Students",
+        "Jobs",
+      ],
     };
   },
 };
