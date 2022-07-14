@@ -14,5 +14,10 @@ module.exports = {
       "braind-green-1": "#137333",
     },
   },
+  variants: {
+    extend: {
+      margin: ["first"],
+    },
+  },
   plugins: [],
 };
