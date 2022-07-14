@@ -20,8 +20,16 @@
           </ul>
         </nav>
         <div class="flex items-center h-full ml-auto">
-          <profile-image v-if="isLoggedIn" data-test="profile-image" />
-          <action-button v-else data-test="login-button" />
+          <profile-image
+            v-if="isLoggedIn"
+            data-test="profile-image"
+            @click="swapUserLogin"
+          />
+          <action-button
+            v-else
+            data-test="login-button"
+            @click="swapUserLogin"
+          />
         </div>
       </div>
     </div>
@@ -52,6 +60,11 @@ export default {
       ],
       isLoggedIn: false,
     };
+  },
+  methods: {
+    swapUserLogin() {
+      this.isLoggedIn = !this.isLoggedIn;
+    },
   },
 };
 </script>
