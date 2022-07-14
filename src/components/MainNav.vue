@@ -19,7 +19,10 @@
             </li>
           </ul>
         </nav>
-        <div class="flex items-center h-full ml-auto"><action-button /></div>
+        <div class="flex items-center h-full ml-auto">
+          <profile-image v-if="isLoggedIn" />
+          <action-button v-else />
+        </div>
       </div>
     </div>
   </header>
@@ -27,11 +30,13 @@
 
 <script>
 import ActionButton from "./ActionButton.vue";
+import ProfileImage from "./ProfileImage.vue";
 
 export default {
   name: "MainNav",
   components: {
     ActionButton,
+    ProfileImage,
   },
   data() {
     return {
@@ -45,6 +50,7 @@ export default {
         "Students",
         "Jobs",
       ],
+      isLoggedIn: false,
     };
   },
 };
