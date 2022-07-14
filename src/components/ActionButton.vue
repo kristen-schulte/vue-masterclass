@@ -1,10 +1,6 @@
 <template>
-  <button :class="{ primary: primary }">
+  <button :class="buttonClass">
     {{ text }}
-  </button>
-
-  <button :class="{ primary: primary }" @click="doubleHeight">
-    {{ area }}
   </button>
 </template>
 
@@ -15,20 +11,16 @@ export default {
   data() {
     return {
       primary: true,
-      width: 10,
-      height: 5,
     };
   },
   computed: {
-    area() {
-      return this.width * this.height;
+    buttonClass() {
+      return {
+        primary: this.primary,
+      };
     },
   },
-  methods: {
-    doubleHeight() {
-      this.height = this.height * 2;
-    },
-  },
+  methods: {},
 };
 </script>
 
