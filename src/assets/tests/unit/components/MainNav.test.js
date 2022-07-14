@@ -22,3 +22,33 @@ describe("MainNav", () => {
     ]);
   });
 });
+
+describe("when user is logged out", () => {
+  it("prompts user sign in", () => {
+    const wrapper = mount(MainNav, {
+      data() {
+        return { isLoggedIn: false };
+      },
+    });
+
+    const loginButton = wrapper.findComponent({ name: "ActionButton" });
+    const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+    expect(loginButton.exists()).toBe(true);
+    expect(profileImage.exists()).toBe(false);
+  });
+});
+
+describe("when user logs in", () => {
+  it("display user profile picture", () => {
+    const wrapper = mount(MainNav, {
+      data() {
+        return { isLoggedIn: true };
+      },
+    });
+
+    const loginButton = wrapper.findComponent({ name: "ActionButton" });
+    const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+    expect(loginButton.exists()).toBe(false);
+    expect(profileImage.exists()).toBe(true);
+  });
+});
