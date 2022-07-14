@@ -31,8 +31,8 @@ describe("when user is logged out", () => {
       },
     });
 
-    const loginButton = wrapper.findComponent({ name: "ActionButton" });
-    const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+    const loginButton = wrapper.find("[data-test='login-button']");
+    const profileImage = wrapper.find("[data-test='profile-image']");
     expect(loginButton.exists()).toBe(true);
     expect(profileImage.exists()).toBe(false);
   });
@@ -46,8 +46,8 @@ describe("when user logs in", () => {
       },
     });
 
-    const loginButton = wrapper.findComponent({ name: "ActionButton" });
-    const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+    const loginButton = wrapper.find("[data-test='login-button']");
+    const profileImage = wrapper.find("[data-test='profile-image']");
     expect(loginButton.exists()).toBe(false);
     expect(profileImage.exists()).toBe(true);
   });
