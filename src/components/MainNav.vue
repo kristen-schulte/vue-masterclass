@@ -27,6 +27,7 @@
           />
           <action-button
             v-else
+            text="Sign In"
             data-test="login-button"
             @click="swapUserLogin"
           />
