@@ -33,7 +33,7 @@
           />
         </div>
       </div>
-      <div><sub-nav /></div>
+      <sub-nav v-if="isLoggedIn" />
     </div>
   </header>
 </template>
