@@ -17,16 +17,14 @@ export default {
       required: false,
       default: "",
     },
-  },
-  data() {
-    return {
-      value: "",
-    };
+    value: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     handleInput(event) {
-      this.value = event.target.value;
-      this.$emit("handle-input", this.value);
+      this.$emit("handle-input", event.target.value);
     },
   },
 };
