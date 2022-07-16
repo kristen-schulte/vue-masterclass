@@ -10,6 +10,8 @@
           type="text"
           placeholder="Software engineer"
           class="w-full text-lg font-normal focus:outline-none"
+          :value="role"
+          @input="role = $event.target.value"
         />
       </div>
       <span
@@ -22,6 +24,8 @@
           type="text"
           placeholder="Los Angeles"
           class="w-full text-lg font-normal focus:outline-none"
+          :value="location"
+          @input="location = $event.target.value"
         />
       </div>
     </div>
@@ -35,6 +39,12 @@ export default {
   name: "JobSearchForm",
   components: {
     ActionButton,
+  },
+  data() {
+    return {
+      role: "",
+      location: "",
+    };
   },
 };
 </script>
