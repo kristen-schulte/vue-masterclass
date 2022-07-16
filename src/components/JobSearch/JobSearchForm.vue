@@ -6,7 +6,10 @@
     <div class="flex flex-nowrap flex-1 h-full text-base font-light">
       <div class="relative flex items-center flex-1 h-full pr-3">
         <label class="absolute left-0 -top-10">Role</label>
-        <text-input placeholder="Software engineer" @handle-input="roleInput" />
+        <text-input
+          placeholder="Software engineer"
+          @handle-input="role = $event"
+        />
       </div>
       <span
         class="flex items-center h-full px-3 border-l border-r border-brand-gray-3 bg-brand-gray-2"
@@ -14,7 +17,10 @@
       >
       <div class="relative flex items-center flex-1 h-full pl-3">
         <label class="absolute left-0 -top-10">Where?</label>
-        <text-input placeholder="Los Angeles" @handle-input="locationInput" />
+        <text-input
+          placeholder="Los Angeles"
+          @handle-input="location = $event"
+        />
       </div>
     </div>
     <action-button text="Search" type="secondary" class="rounded-r-3xl" />
@@ -35,14 +41,6 @@ export default {
       role: "",
       location: "",
     };
-  },
-  methods: {
-    roleInput(payload) {
-      this.role = payload;
-    },
-    locationInput(payload) {
-      this.location = payload;
-    },
   },
 };
 </script>
