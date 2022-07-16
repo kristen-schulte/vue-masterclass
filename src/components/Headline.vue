@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import nextElementInList from "@/utils/nextElementInList";
+
 export default {
   name: "HeadlineComponent",
   data() {
@@ -33,9 +35,7 @@ export default {
     changeTitle() {
       this.interval = setInterval(() => {
         const actions = ["Build", "Create", "Design", "Code"];
-        const index = actions.indexOf(this.action);
-        const nextIndex = (index + 1) % 4;
-        this.action = actions[nextIndex];
+        this.action = nextElementInList(actions, this.action);
       }, 3000);
     },
   },
