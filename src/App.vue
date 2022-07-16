@@ -7,7 +7,7 @@
 
 <script>
 import MainNav from "@/components/Navigation/MainNav.vue";
-import HeroSection from "./components/HeroSection.vue";
+import HeroSection from "./components/JobSearch/HeroSection.vue";
 
 export default {
   name: "App",
