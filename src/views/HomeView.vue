@@ -1,9 +1,13 @@
 <template>
-  <h1>Home View</h1>
+  <hero-section />
 </template>
 
 <script>
+import HeroSection from "@/components/JobSearch/HeroSection.vue";
 export default {
   name: "HomeView",
+  components: {
+    HeroSection,
+  },
 };
 </script>
