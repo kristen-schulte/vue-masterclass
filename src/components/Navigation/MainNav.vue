@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import ActionButton from "./ActionButton.vue";
+import ActionButton from "../ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
 import SubNav from "./SubNav.vue";
 
