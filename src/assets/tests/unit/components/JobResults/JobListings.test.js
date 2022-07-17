@@ -10,11 +10,11 @@ describe("JobListings", () => {
     expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/jobs");
   });
 
-  it("creates a job listing for each received job", async () => {
+  it("creates a job listing for a maximum of 10 jobs", async () => {
     axios.get.mockResolvedValue({ data: Array(15).fill({}) });
     const wrapper = shallowMount(JobListings);
     await flushPromises();
     const listings = wrapper.findAll("[data-test='job-listing']");
-    expect(listings).toHaveLength(15);
+    expect(listings).toHaveLength(10);
   });
 });
