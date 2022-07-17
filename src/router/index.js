@@ -1,15 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const HomeView = () => import("@/views/HomeView.vue");
-
-/**
- * Use webpackChunkName to bundle two or more views together.
- * Not relevant in our demo case, but useful for larger apps.
- */
-const JobResultsView = () =>
-  import(/* webpackChunkName: "jobs" */ "@/views/JobResultsView.vue");
-const JobView = () =>
-  import(/* webpackChunkName: "jobs" */ "@/views/JobView.vue");
+const JobResultsView = () => import("@/views/JobResultsView.vue");
+const JobView = () => import("@/views/JobView.vue");
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },
