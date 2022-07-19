@@ -66,10 +66,12 @@ export default {
         { text: "Students", url: "/" },
         { text: "Jobs", url: "/jobs/results" },
       ],
-      isLoggedIn: false,
     };
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    },
     headerHeightClass() {
       return {
         "h-16": !this.isLoggedIn,
@@ -79,7 +81,11 @@ export default {
   },
   methods: {
     swapUserLogin() {
-      this.isLoggedIn = !this.isLoggedIn;
+      if (this.isLoggedIn) {
+        this.$store.commit("LOGOUT_USER");
+      } else {
+        this.$store.commit("LOGIN_USER");
+      }
     },
   },
 };
