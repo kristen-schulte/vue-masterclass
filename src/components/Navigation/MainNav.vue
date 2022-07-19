@@ -48,6 +48,7 @@
 import ActionButton from "../Shared/ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
 import SubNav from "./SubNav.vue";
+import { LOGIN_USER, LOGOUT_USER } from "@/store";
 
 export default {
   name: "MainNav",
@@ -82,9 +83,9 @@ export default {
   methods: {
     swapUserLogin() {
       if (this.isLoggedIn) {
-        this.$store.commit("LOGOUT_USER");
+        this.$store.commit(LOGOUT_USER);
       } else {
-        this.$store.commit("LOGIN_USER");
+        this.$store.commit(LOGIN_USER);
       }
     },
   },
