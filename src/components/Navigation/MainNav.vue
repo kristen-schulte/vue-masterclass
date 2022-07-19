@@ -29,13 +29,13 @@
           <profile-image
             v-if="isLoggedIn"
             data-test="profile-image"
-            @click="LOGOUT_USER"
+            @click="LOGOUT_USER()"
           />
           <action-button
             v-else
             text="Sign In"
             data-test="login-button"
-            @click="LOGIN_USER"
+            @click="LOGIN_USER()"
           />
         </div>
       </div>

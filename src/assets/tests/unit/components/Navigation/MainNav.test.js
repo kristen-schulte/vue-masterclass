@@ -60,22 +60,20 @@ describe("MainNav", () => {
         await loginButton.trigger("click");
         expect(commit).toHaveBeenCalledWith("LOGIN_USER");
       });
-    });
-  });
 
-  describe("when user logs in", () => {
-    it("display user profile picture", () => {
-      const $store = mockStore(true);
-      const wrapper = shallowMount(MainNav, wrapperConfig($store));
-      const profileImage = wrapper.find("[data-test='profile-image']");
-      expect(profileImage.exists()).toBe(true);
-    });
+      it("display user profile picture", () => {
+        const $store = mockStore(true);
+        const wrapper = shallowMount(MainNav, wrapperConfig($store));
+        const profileImage = wrapper.find("[data-test='profile-image']");
+        expect(profileImage.exists()).toBe(true);
+      });
 
-    it("displays subnav with additional information", () => {
-      const $store = mockStore(true);
-      const wrapper = shallowMount(MainNav, wrapperConfig($store));
-      const subnav = wrapper.find("[data-test='subnav']");
-      expect(subnav.exists()).toBe(true);
+      it("displays subnav with additional information", () => {
+        const $store = mockStore(true);
+        const wrapper = shallowMount(MainNav, wrapperConfig($store));
+        const subnav = wrapper.find("[data-test='subnav']");
+        expect(subnav.exists()).toBe(true);
+      });
     });
   });
 });
