@@ -35,7 +35,7 @@ describe("JobListings", () => {
 
   it("fetches jobs", () => {
     shallowMount(JobListings, createConfig(createRoute()));
-    expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/jobs");
+    expect(axios.get).toHaveBeenCalledWith("http://testapi.com/jobs");
   });
 
   it("creates a job listing for a maximum of 10 jobs per page", async () => {
