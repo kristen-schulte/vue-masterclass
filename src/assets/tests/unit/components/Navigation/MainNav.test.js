@@ -44,10 +44,22 @@ describe("MainNav", () => {
       const loginButton = wrapper.find("[data-test='login-button']");
       expect(loginButton.exists()).toBe(true);
     });
+
+    describe("when user logs in", () => {
+      it("issues call to login user", async () => {
+        const store = createStore();
+        const commit = jest.fn();
+        store.commit = commit;
+        const wrapper = shallowMount(MainNav, wrapperConfig(store));
+        const loginButton = wrapper.find("[data-test='login-button']");
+        await loginButton.trigger("click");
+        expect(commit).toHaveBeenCalledWith("LOGIN_USER");
+      });
+    });
   });
 
   describe("when user logs in", () => {
-    it("display user profile picture", async () => {
+    it("display user profile picture", () => {
       const store = createStore({
         state() {
           return { isLoggedIn: true };
@@ -58,7 +70,7 @@ describe("MainNav", () => {
       expect(profileImage.exists()).toBe(true);
     });
 
-    it("displays subnav with additional information", async () => {
+    it("displays subnav with additional information", () => {
       const store = createStore({
         state() {
           return { isLoggedIn: true };
