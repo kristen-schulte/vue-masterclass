@@ -71,9 +71,7 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      isLoggedIn: "isLoggedIn",
-    }),
+    ...mapState(["isLoggedIn"]),
     headerHeightClass() {
       return {
         "h-16": !this.isLoggedIn,
