@@ -29,13 +29,13 @@
           <profile-image
             v-if="isLoggedIn"
             data-test="profile-image"
-            @click="swapUserLogin"
+            @click="LOGOUT_USER"
           />
           <action-button
             v-else
             text="Sign In"
             data-test="login-button"
-            @click="swapUserLogin"
+            @click="LOGIN_USER"
           />
         </div>
       </div>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import ActionButton from "../Shared/ActionButton.vue";
 import ProfileImage from "./ProfileImage.vue";
 import SubNav from "./SubNav.vue";
@@ -80,13 +80,7 @@ export default {
     },
   },
   methods: {
-    swapUserLogin() {
-      if (this.isLoggedIn) {
-        this.$store.commit(LOGOUT_USER);
-      } else {
-        this.$store.commit(LOGIN_USER);
-      }
-    },
+    ...mapMutations([LOGIN_USER, LOGOUT_USER]),
   },
 };
 </script>
