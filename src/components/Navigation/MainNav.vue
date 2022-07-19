@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     ...mapState({
-      isLoggedIn: (state) => state.isLoggedIn,
+      isLoggedIn: "isLoggedIn",
     }),
     headerHeightClass() {
       return {
