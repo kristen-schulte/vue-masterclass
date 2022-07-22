@@ -34,6 +34,22 @@ function createConfig($route, $store) {
 }
 
 describe("JobListings", () => {
+  describe("when component mounts", () => {
+    it("makes call to fetch jobs from API", () => {
+      const dispatch = jest.fn();
+      shallowMount(
+        JobListings,
+        createConfig(
+          mockRoute(),
+          mockStore({
+            dispatch,
+          })
+        )
+      );
+      expect(dispatch).toHaveBeenCalledWith("FETCH_JOBS");
+    });
+  });
+
   it("creates a job listing for a maximum of 10 jobs per page", async () => {
     const wrapper = shallowMount(
       JobListings,
