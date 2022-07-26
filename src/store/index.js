@@ -6,6 +6,8 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_JOBS = "RECEIVE_JOBS";
 export const FETCH_JOBS = "FETCH_JOBS";
 
+export const UNIQUE_ORGANIZATIONS = "UNIQUE_ORGANIZATIONS";
+
 export const state = () => {
   return {
     isLoggedIn: false,
@@ -32,9 +34,19 @@ export const actions = {
   },
 };
 
+export const getters = {
+  [UNIQUE_ORGANIZATIONS](state) {
+    const uniqueOrgs = new Set();
+    state.jobs.forEach((job) => {
+      uniqueOrgs.add(job.organization);
+    });
+    return uniqueOrgs;
+  },
+};
+
 const store = createStore({
   state,
-  // getters: {},
+  getters,
   mutations,
   strict: process.env.NODE_ENV !== "production",
   actions,
