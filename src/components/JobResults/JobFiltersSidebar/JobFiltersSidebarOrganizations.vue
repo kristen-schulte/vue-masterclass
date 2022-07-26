@@ -2,21 +2,9 @@
   <accordion header="Organizations">
     <div class="mt-5">
       <ul class="flex flex-row flex-wrap">
-        <li class="w-1/2 h-8">
-          <input id="VueTube" type="checkbox" class="mr-3" />
-          <label for="VueTube">VueTube</label>
-        </li>
-        <li class="w-1/2 h-8">
-          <input id="VueTube" type="checkbox" class="mr-3" />
-          <label for="VueTube">VueTube</label>
-        </li>
-        <li class="w-1/2 h-8">
-          <input id="VueTube" type="checkbox" class="mr-3" />
-          <label for="VueTube">VueTube</label>
-        </li>
-        <li class="w-1/2 h-8">
-          <input id="VueTube" type="checkbox" class="mr-3" />
-          <label for="VueTube">VueTube</label>
+        <li v-for="org in UNIQUE_ORGANIZATIONS" :key="org" class="w-1/2 h-8">
+          <input :id="org" type="checkbox" class="mr-3" />
+          <label :for="org">{{ org }}</label>
         </li>
       </ul>
     </div>
@@ -29,6 +17,11 @@ export default {
   name: "JobFiltersSidebarOrganizations",
   components: {
     Accordion,
+  },
+  computed: {
+    UNIQUE_ORGANIZATIONS() {
+      return this.$store.getters.UNIQUE_ORGANIZATIONS;
+    },
   },
 };
 </script>
