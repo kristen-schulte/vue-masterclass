@@ -3,7 +3,13 @@
     <div class="mt-5">
       <ul class="flex flex-row flex-wrap">
         <li v-for="org in UNIQUE_ORGANIZATIONS" :key="org" class="w-1/2 h-8">
-          <input :id="org" type="checkbox" class="mr-3" />
+          <input
+            :id="org"
+            v-model="selectedOrganizations"
+            :value="org"
+            type="checkbox"
+            class="mr-3"
+          />
           <label :for="org" data-test="organization">{{ org }}</label>
         </li>
       </ul>
@@ -19,6 +25,11 @@ export default {
   name: "JobFiltersSidebarOrganizations",
   components: {
     Accordion,
+  },
+  data() {
+    return {
+      selectedOrganizations: [],
+    };
   },
   computed: {
     ...mapGetters([UNIQUE_ORGANIZATIONS]),
