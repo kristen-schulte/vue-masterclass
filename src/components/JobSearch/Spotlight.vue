@@ -1,7 +1,11 @@
 <template>
   <ul>
     <li v-for="spot in spotlights" :key="spot.id">
-      <slot :spotlight="spot"></slot>
+      <slot
+        :img="spot.img"
+        :title="spot.title"
+        :description="spot.description"
+      ></slot>
     </li>
   </ul>
 </template>

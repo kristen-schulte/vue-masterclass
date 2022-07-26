@@ -22,10 +22,10 @@
           to="/jobs/results"
           class="flex flex-col mx-5 border rounded-lg w-72 bg-brand-gray-2"
         >
-          <img class="object-contain" :src="props.spotlight.img" />
+          <img class="object-contain" :src="props.img" />
           <div class="h-48 px-6 py-4 mt-3">
-            <h3 class="text-lg font-medium">{{ props.spotlight.title }}</h3>
-            <p class="mt-3 text-sm">{{ props.spotlight.description }}</p>
+            <h3 class="text-lg font-medium">{{ props.title }}</h3>
+            <p class="mt-3 text-sm">{{ props.description }}</p>
           </div>
           <router-link
             to="/jobs/results"
