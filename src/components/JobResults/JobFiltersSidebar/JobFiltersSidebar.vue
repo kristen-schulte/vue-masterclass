@@ -13,28 +13,7 @@
       <accordion header="Job types">
         <p>Placeholder</p>
       </accordion>
-      <accordion header="Organizations">
-        <div class="mt-5">
-          <ul class="flex flex-row flex-wrap">
-            <li class="w-1/2 h-8">
-              <input id="VueTube" type="checkbox" class="mr-3" />
-              <label for="VueTube">VueTube</label>
-            </li>
-            <li class="w-1/2 h-8">
-              <input id="VueTube" type="checkbox" class="mr-3" />
-              <label for="VueTube">VueTube</label>
-            </li>
-            <li class="w-1/2 h-8">
-              <input id="VueTube" type="checkbox" class="mr-3" />
-              <label for="VueTube">VueTube</label>
-            </li>
-            <li class="w-1/2 h-8">
-              <input id="VueTube" type="checkbox" class="mr-3" />
-              <label for="VueTube">VueTube</label>
-            </li>
-          </ul>
-        </div>
-      </accordion>
+      <job-filters-sidebar-organizations />
     </section>
   </div>
 </template>
@@ -42,12 +21,14 @@
 <script>
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import Accordion from "@/components/Shared/Accordion.vue";
+import JobFiltersSidebarOrganizations from "./JobFiltersSidebarOrganizations.vue";
 
 export default {
   name: "JobFiltersSidebar",
   components: {
     ActionButton,
     Accordion,
+    JobFiltersSidebarOrganizations,
   },
 };
 </script>
