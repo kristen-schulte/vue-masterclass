@@ -17,15 +17,15 @@
       </div>
     </section>
     <spotlight class="flex flex-row justify-center pb-16">
-      <template #default="props">
+      <template #default="{ img, title, description }">
         <router-link
           to="/jobs/results"
           class="flex flex-col mx-5 border rounded-lg w-72 bg-brand-gray-2"
         >
-          <img class="object-contain" :src="props.img" />
+          <img class="object-contain" :src="img" />
           <div class="h-48 px-6 py-4 mt-3">
-            <h3 class="text-lg font-medium">{{ props.title }}</h3>
-            <p class="mt-3 text-sm">{{ props.description }}</p>
+            <h3 class="text-lg font-medium">{{ title }}</h3>
+            <p class="mt-3 text-sm">{{ description }}</p>
           </div>
           <router-link
             to="/jobs/results"
