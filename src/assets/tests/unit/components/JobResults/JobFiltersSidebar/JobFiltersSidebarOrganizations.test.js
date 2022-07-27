@@ -13,6 +13,7 @@ describe("JobFiltersSidebarOrganizaions", () => {
         mocks: {
           $store,
         },
+        stubs: { FontAwesomeIcon: true },
       },
     });
 
