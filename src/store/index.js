@@ -48,6 +48,10 @@ export const getters = {
     return uniqueOrgs;
   },
   [FILTER_JOBS_ORGS](state) {
+    if (state.selectedOrganizations.length === 0) {
+      return state.jobs;
+    }
+
     return state.jobs.filter((j) =>
       state.selectedOrganizations.includes(j.organization)
     );
