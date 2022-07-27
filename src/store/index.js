@@ -5,9 +5,9 @@ export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_JOBS = "RECEIVE_JOBS";
 export const FETCH_JOBS = "FETCH_JOBS";
-
 export const UNIQUE_ORGANIZATIONS = "UNIQUE_ORGANIZATIONS";
 export const ADD_SELECTED_ORGANIZATIONS = "ADD_SELECTED_ORGANIZATIONS";
+export const FILTER_JOBS_ORGS = "FILTER_JOBS_ORGS";
 
 export const state = () => {
   return {
@@ -46,6 +46,11 @@ export const getters = {
       uniqueOrgs.add(job.organization);
     });
     return uniqueOrgs;
+  },
+  [FILTER_JOBS_ORGS](state) {
+    return state.jobs.filter((j) =>
+      state.selectedOrganizations.includes(j.organization)
+    );
   },
 };
 
