@@ -9,6 +9,7 @@
             :value="org"
             type="checkbox"
             class="mr-3"
+            @change="selectOrganization"
           />
           <label :for="org" data-test="organization">{{ org }}</label>
         </li>
@@ -33,6 +34,11 @@ export default {
   },
   computed: {
     ...mapGetters([UNIQUE_ORGANIZATIONS]),
+  },
+  methods: {
+    selectOrganization() {
+      // submit to store
+    },
   },
 };
 </script>
