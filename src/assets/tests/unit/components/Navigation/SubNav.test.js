@@ -1,13 +1,14 @@
 import { mount } from "@vue/test-utils";
 import SubNav from "@/components/Navigation/SubNav";
 
-function createConfig(routeName) {
+function createConfig(routeName, $store = {}) {
   return {
     global: {
       mocks: {
         $route: {
           name: routeName,
         },
+        $store,
       },
       stubs: {
         FontAwesomeIcon: true,
@@ -19,9 +20,14 @@ function createConfig(routeName) {
 describe("SubNav", () => {
   describe("when user is on job page", () => {
     it("displays job count", () => {
-      const wrapper = mount(SubNav, createConfig("JobResults"));
+      const $store = {
+        getters: {
+          FILTER_JOBS_ORGS: [{ id: 1 }, { id: 2 }],
+        },
+      };
+      const wrapper = mount(SubNav, createConfig("JobResults", $store));
       const jobCount = wrapper.find("[data-test='job-count']");
-      expect(jobCount.exists()).toBe(true);
+      expect(jobCount.text()).toMatch("2 jobs matched");
     });
   });
 
