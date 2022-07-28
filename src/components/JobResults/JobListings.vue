@@ -35,7 +35,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import JobListing from "./JobListing.vue";
-import { FETCH_JOBS, FILTER_JOBS_ORGS } from "@/store";
+import { FETCH_JOBS, FILTER_JOBS_ORGS } from "@/store/constants";
 
 export default {
   name: "JobListings",
