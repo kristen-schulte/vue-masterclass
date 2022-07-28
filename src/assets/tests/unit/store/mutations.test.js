@@ -32,4 +32,12 @@ describe("mutations", () => {
       expect(state).toEqual({ selectedOrganizations: ["Org 1", "Org 2"] });
     });
   });
+
+  describe("ADD_SELECTED_JOB_TYPES", () => {
+    it("updates types that the user has chosen to filter jobs", () => {
+      const state = { selectedJobTypes: [] };
+      mutations.ADD_SELECTED_JOB_TYPES(state, ["Type 1", "Type 2"]);
+      expect(state).toEqual({ selectedJobTypes: ["Type 1", "Type 2"] });
+    });
+  });
 });
