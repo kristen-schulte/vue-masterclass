@@ -1,44 +1,16 @@
 import { createStore } from "vuex";
-import getJobs from "@/api/getJobs";
-
-export const LOGIN_USER = "LOGIN_USER";
-export const LOGOUT_USER = "LOGOUT_USER";
-export const RECEIVE_JOBS = "RECEIVE_JOBS";
-export const FETCH_JOBS = "FETCH_JOBS";
-
-export const state = () => {
-  return {
-    isLoggedIn: false,
-    jobs: [],
-  };
-};
-
-export const mutations = {
-  [LOGIN_USER](state) {
-    state.isLoggedIn = true;
-  },
-  [LOGOUT_USER](state) {
-    state.isLoggedIn = false;
-  },
-  [RECEIVE_JOBS](state, jobs) {
-    state.jobs = jobs;
-  },
-};
-
-export const actions = {
-  [FETCH_JOBS]: async (context) => {
-    const data = await getJobs();
-    context.commit(RECEIVE_JOBS, data);
-  },
-};
+import state from "./state";
+import getters from "./getters";
+import mutations from "./mutations";
+import actions from "./actions";
 
 const store = createStore({
   state,
-  // getters: {},
+  getters,
   mutations,
-  strict: process.env.NODE_ENV !== "production",
   actions,
   // modules: {},
+  strict: process.env.NODE_ENV !== "production",
 });
 
 export default store;

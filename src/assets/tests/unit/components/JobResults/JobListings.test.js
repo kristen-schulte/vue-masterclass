@@ -11,8 +11,8 @@ function mockRoute(page = "5") {
 
 function mockStore(config = {}) {
   return {
-    state: {
-      jobs: Array(15).fill({}),
+    getters: {
+      FILTER_JOBS_ORGS: [],
     },
     dispatch: jest.fn(),
     ...config,
@@ -53,7 +53,10 @@ describe("JobListings", () => {
   it("creates a job listing for a maximum of 10 jobs per page", async () => {
     const wrapper = shallowMount(
       JobListings,
-      createConfig(mockRoute("1"), mockStore())
+      createConfig(
+        mockRoute("1"),
+        mockStore({ getters: { FILTER_JOBS_ORGS: Array(15).fill({}) } })
+      )
     );
     await flushPromises();
     const listings = wrapper.findAll("[data-test='job-listing']");
@@ -92,7 +95,10 @@ describe("JobListings", () => {
     it("shows link to next page", async () => {
       const wrapper = shallowMount(
         JobListings,
-        createConfig(mockRoute("1"), mockStore())
+        createConfig(
+          mockRoute("1"),
+          mockStore({ getters: { FILTER_JOBS_ORGS: Array(15).fill({}) } })
+        )
       );
       await flushPromises();
       const next = wrapper.find("[data-test='next-page-link']");
