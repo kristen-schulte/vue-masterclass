@@ -4,6 +4,8 @@ import {
   FILTER_JOBS_ORGS,
   UNIQUE_JOB_TYPES,
   FILTER_JOBS_TYPES,
+  INCLUDE_JOB_ORG,
+  INCLUDE_JOB_TYPE,
 } from "./constants";
 
 const getters = {
@@ -21,20 +23,18 @@ const getters = {
     });
     return uniqueJobTypes;
   },
-  [FILTERED_JOBS](state) {
+  [INCLUDE_JOB_ORG]: (state) => (job) => {
+    if (state.selectedOrganizations.length === 0) return true;
+    return state.selectedOrganizations.includes(job.organization);
+  },
+  [INCLUDE_JOB_TYPE]: (state) => (job) => {
+    if (state.selectedJobTypes.length === 0) return true;
+    return state.selectedJobTypes.includes(job.jobType);
+  },
+  [FILTERED_JOBS](state, getters) {
     return state.jobs
-      .filter((job) => {
-        if (state.selectedOrganizations.length === 0) {
-          return true;
-        }
-        return state.selectedOrganizations.includes(job.organization);
-      })
-      .filter((job) => {
-        if (state.selectedJobTypes.length === 0) {
-          return true;
-        }
-        return state.selectedJobTypes.includes(job.jobType);
-      });
+      .filter((job) => getters.INCLUDE_JOB_ORG(job))
+      .filter((job) => getters.INCLUDE_JOB_TYPE(job));
   },
   [FILTER_JOBS_ORGS](state) {
     if (state.selectedOrganizations.length === 0) {

@@ -22,7 +22,7 @@ describe("SubNav", () => {
     it("displays job count", () => {
       const $store = {
         getters: {
-          FILTER_JOBS_ORGS: [{ id: 1 }, { id: 2 }],
+          FILTERED_JOBS: [{ id: 1 }, { id: 2 }],
         },
       };
       const wrapper = mount(SubNav, createConfig("JobResults", $store));
