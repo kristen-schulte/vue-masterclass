@@ -65,4 +65,41 @@ describe("getters", () => {
       });
     });
   });
+
+  describe("FILTER_JOBS_TYPES", () => {
+    it("identifies jobs that match the selected job types", () => {
+      const state = {
+        jobs: [
+          { jobType: "Full-time" },
+          { jobType: "Temporary" },
+          { jobType: "Part-time" },
+        ],
+        selectedJobTypes: ["Full-time", "Part-time"],
+      };
+      const filteredJobs = getters.FILTER_JOBS_TYPES(state);
+      expect(filteredJobs).toEqual([
+        { jobType: "Full-time" },
+        { jobType: "Part-time" },
+      ]);
+    });
+
+    describe("when no job types selected", () => {
+      it("returns all jobs", () => {
+        const state = {
+          jobs: [
+            { jobType: "Full-time" },
+            { jobType: "Temporary" },
+            { jobType: "Part-time" },
+          ],
+          selectedJobTypes: [],
+        };
+        const filteredJobs = getters.FILTER_JOBS_TYPES(state);
+        expect(filteredJobs).toEqual([
+          { jobType: "Full-time" },
+          { jobType: "Temporary" },
+          { jobType: "Part-time" },
+        ]);
+      });
+    });
+  });
 });
