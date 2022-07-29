@@ -40,15 +40,15 @@ describe("getters", () => {
         expect(result).toBe(true);
       });
     });
-  });
 
-  it("identifies if job is in an organization", () => {
-    const state = {
-      selectedOrganizations: ["Google", "Microsoft", "Amazon"],
-    };
-    const job = { organization: "Google" };
-    const result = getters.INCLUDE_JOB_ORG(state)(job);
-    expect(result).toBe(true);
+    it("identifies if job is in an organization", () => {
+      const state = {
+        selectedOrganizations: ["Google", "Microsoft", "Amazon"],
+      };
+      const job = { organization: "Google" };
+      const result = getters.INCLUDE_JOB_ORG(state)(job);
+      expect(result).toBe(true);
+    });
   });
 
   describe("INCLUDE_JOB_TYPE", () => {
@@ -70,6 +70,28 @@ describe("getters", () => {
       const job = { jobType: "Part-time" };
       const result = getters.INCLUDE_JOB_TYPE(state)(job);
       expect(result).toBe(true);
+    });
+  });
+
+  describe("FILTERED_JOBS", () => {
+    it("filters jobs by organization and job type", () => {
+      const INCLUDE_JOB_ORG = jest.fn().mockReturnValue(true);
+      const INCLUDE_JOB_TYPE = jest.fn().mockReturnValue(true);
+
+      const mockGetters = {
+        INCLUDE_JOB_ORG,
+        INCLUDE_JOB_TYPE,
+      };
+
+      const job = { id: 1, title: "Job I Found" };
+      const state = {
+        jobs: [job],
+      };
+
+      const result = getters.FILTERED_JOBS(state, mockGetters);
+      expect(result).toEqual([job]);
+      expect(INCLUDE_JOB_ORG).toHaveBeenCalledWith(job);
+      expect(INCLUDE_JOB_TYPE).toHaveBeenCalledWith(job);
     });
   });
 });
