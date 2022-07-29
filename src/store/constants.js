@@ -5,6 +5,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 /** Jobs */
 export const RECEIVE_JOBS = "RECEIVE_JOBS";
 export const FETCH_JOBS = "FETCH_JOBS";
+export const FILTERED_JOBS = "FILTERED_JOBS";
 
 /** Orgs */
 export const UNIQUE_ORGANIZATIONS = "UNIQUE_ORGANIZATIONS";
