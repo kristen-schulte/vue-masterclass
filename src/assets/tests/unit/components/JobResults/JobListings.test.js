@@ -12,7 +12,7 @@ function mockRoute(page = "5") {
 function mockStore(config = {}) {
   return {
     getters: {
-      FILTER_JOBS_ORGS: [],
+      FILTERED_JOBS: [],
     },
     dispatch: jest.fn(),
     ...config,
@@ -55,7 +55,7 @@ describe("JobListings", () => {
       JobListings,
       createConfig(
         mockRoute("1"),
-        mockStore({ getters: { FILTER_JOBS_ORGS: Array(15).fill({}) } })
+        mockStore({ getters: { FILTERED_JOBS: Array(15).fill({}) } })
       )
     );
     await flushPromises();
@@ -97,7 +97,7 @@ describe("JobListings", () => {
         JobListings,
         createConfig(
           mockRoute("1"),
-          mockStore({ getters: { FILTER_JOBS_ORGS: Array(15).fill({}) } })
+          mockStore({ getters: { FILTERED_JOBS: Array(15).fill({}) } })
         )
       );
       await flushPromises();
