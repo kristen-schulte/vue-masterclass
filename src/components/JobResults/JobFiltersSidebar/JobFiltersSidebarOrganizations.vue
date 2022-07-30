@@ -2,7 +2,7 @@
   <accordion header="Organizations">
     <div class="mt-5">
       <ul class="flex flex-row flex-wrap">
-        <li v-for="org in UNIQUE_ORGANIZATIONS" :key="org" class="w-1/2 h-8">
+        <li v-for="org in uniqueOrgs" :key="org" class="w-1/2 h-8">
           <input
             :id="org"
             v-model="selectedOrganizations"
@@ -20,31 +20,34 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import Accordion from "@/components/Shared/Accordion.vue";
-import {
-  UNIQUE_ORGANIZATIONS,
-  ADD_SELECTED_ORGANIZATIONS,
-} from "@/store/constants";
+import { useUniqueOrgs } from "@/store/composables";
+import { ADD_SELECTED_ORGANIZATIONS } from "@/store/constants";
 export default {
   name: "JobFiltersSidebarOrganizations",
   components: {
     Accordion,
   },
-  data() {
-    return {
-      selectedOrganizations: [],
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const selectedOrganizations = ref([]);
+    const uniqueOrgs = useUniqueOrgs();
+
+    const selectOrganization = () => {
+      store.commit(ADD_SELECTED_ORGANIZATIONS, selectedOrganizations.value);
+      router.push({ name: "JobResults" });
     };
-  },
-  computed: {
-    ...mapGetters([UNIQUE_ORGANIZATIONS]),
-  },
-  methods: {
-    ...mapMutations([ADD_SELECTED_ORGANIZATIONS]),
-    selectOrganization() {
-      this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations);
-      this.$router.push({ name: "JobResults" });
-    },
+
+    return {
+      selectedOrganizations,
+      uniqueOrgs,
+      selectOrganization,
+    };
   },
 };
 </script>
