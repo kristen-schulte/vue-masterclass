@@ -25,6 +25,7 @@ function createConfig(props = {}) {
 
 describe("JobFiltersSidebarCheckboxGroup", () => {
   it("renders unique list of values for filtering jobs", async () => {
+    useStoreMock.mockReturnValue({ commit: jest.fn(), subscribe: jest.fn() });
     const wrapper = mount(JobFiltersSidebarCheckboxGroup, createConfig());
     const clickableArea = wrapper.find("[data-test='clickable-area']");
     await clickableArea.trigger("click");
@@ -37,7 +38,7 @@ describe("JobFiltersSidebarCheckboxGroup", () => {
     it("communicates that user has selected checkbox for value", async () => {
       useRouterMock.mockReturnValue({ push: jest.fn() });
       const commit = jest.fn();
-      useStoreMock.mockReturnValue({ commit });
+      useStoreMock.mockReturnValue({ commit, subscribe: jest.fn() });
       const props = {
         mutation: "SOME_MUTATION",
       };
@@ -54,7 +55,7 @@ describe("JobFiltersSidebarCheckboxGroup", () => {
   });
 
   it("navigates user to home job results page", async () => {
-    useStoreMock.mockReturnValue({ commit: jest.fn() });
+    useStoreMock.mockReturnValue({ commit: jest.fn(), subscribe: jest.fn() });
     const push = jest.fn();
     useRouterMock.mockReturnValue({ push });
     const wrapper = mount(JobFiltersSidebarCheckboxGroup, createConfig());

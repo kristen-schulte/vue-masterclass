@@ -2,6 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 
 import { useUniqueJobTypes, useUniqueOrgs, useUniqueDegrees } from "@/store/composables";
 jest.mock("@/store/composables");
+jest.mock("vuex");
 
 const useUniqueJobTypesMock = useUniqueJobTypes as jest.Mock;
 const useUniqueOrgsMock = useUniqueOrgs as jest.Mock;
