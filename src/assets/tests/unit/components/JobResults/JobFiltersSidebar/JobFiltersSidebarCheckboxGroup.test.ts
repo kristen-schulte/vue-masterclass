@@ -1,9 +1,11 @@
 import { mount } from "@vue/test-utils";
 import { useStore } from "vuex";
 jest.mock("vuex");
+const useStoreMock = useStore as jest.Mock;
 
 import { useRouter } from "vue-router";
 jest.mock("vue-router");
+const useRouterMock = useRouter as jest.Mock;
 
 import JobFiltersSidebarCheckboxGroup from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarCheckboxGroup.vue";
 
@@ -33,9 +35,9 @@ describe("JobFiltersSidebarCheckboxGroup", () => {
 
   describe("when user clicks checkbox", () => {
     it("communicates that user has selected checkbox for value", async () => {
-      useRouter.mockReturnValue({ push: jest.fn() });
+      useRouterMock.mockReturnValue({ push: jest.fn() });
       const commit = jest.fn();
-      useStore.mockReturnValue({ commit });
+      useStoreMock.mockReturnValue({ commit });
       const props = {
         mutation: "SOME_MUTATION",
       };
@@ -46,20 +48,20 @@ describe("JobFiltersSidebarCheckboxGroup", () => {
       const clickableArea = wrapper.find("[data-test='clickable-area']");
       await clickableArea.trigger("click");
       const input1 = wrapper.find("[data-test='Value-A']");
-      await input1.setChecked();
+      await input1.setValue(true);
       expect(commit).toHaveBeenCalledWith("SOME_MUTATION", ["Value-A"]);
     });
   });
 
   it("navigates user to home job results page", async () => {
-    useStore.mockReturnValue({ commit: jest.fn() });
+    useStoreMock.mockReturnValue({ commit: jest.fn() });
     const push = jest.fn();
-    useRouter.mockReturnValue({ push });
+    useRouterMock.mockReturnValue({ push });
     const wrapper = mount(JobFiltersSidebarCheckboxGroup, createConfig());
     const clickableArea = wrapper.find("[data-test='clickable-area']");
     await clickableArea.trigger("click");
     const input1 = wrapper.find("[data-test='Value-A']");
-    await input1.setChecked();
+    await input1.setValue(true);
     expect(push).toHaveBeenCalledWith({ name: "JobResults" });
   });
 });
