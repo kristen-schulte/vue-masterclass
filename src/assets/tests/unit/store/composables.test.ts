@@ -8,6 +8,7 @@ import {
   useUniqueJobTypes,
   useUniqueOrgs,
   useFetchJobsDispatch,
+  useUniqueDegrees,
 } from "@/store/composables";
 
 describe("composables", () => {
@@ -45,6 +46,18 @@ describe("composables", () => {
       });
       const result = useUniqueOrgs();
       expect(result.value).toEqual(new Set(["Google"]));
+    });
+  });
+
+  describe("useUniqueDegrees", () => {
+    it("retrieves unique degrees from store", () => {
+      useStoreMock.mockReturnValue({
+        getters: {
+          UNIQUE_DEGREES: ["Ph.D"],
+        },
+      });
+      const result = useUniqueDegrees();
+      expect(result.value).toEqual(["Ph.D"]);
     });
   });
 

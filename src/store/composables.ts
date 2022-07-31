@@ -5,6 +5,7 @@ import {
   UNIQUE_JOB_TYPES,
   UNIQUE_ORGANIZATIONS,
   FETCH_JOBS,
+  UNIQUE_DEGREES,
 } from "./constants";
 import { Job } from "@/api/types";
 import { key } from "@/store";
@@ -23,6 +24,11 @@ export const useUniqueJobTypes = () => {
 export const useUniqueOrgs = () => {
   const store = useStore(key);
   return computed<Set<string>>(() => store.getters[UNIQUE_ORGANIZATIONS]);
+};
+
+export const useUniqueDegrees = () => {
+  const store = useStore(key);
+  return computed<string[]>(() => store.getters[UNIQUE_DEGREES]);
 };
 
 /** Actions */

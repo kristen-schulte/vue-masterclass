@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent, PropType } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { key } from "@/store";
@@ -38,7 +38,7 @@ export default defineComponent({
       default: "Header",
     },
     uniqueValues: {
-      type: Set,
+      type: [Set, Array] as PropType<Set<string> | string[]>,
       require: true,
       default: new Set([]),
     },
