@@ -22,8 +22,6 @@
         :mutation="ADD_SELECTED_ORGANIZATIONS"
         data-test="organizations-filter"
       />
-      <job-filters-sidebar-job-types />
-      <job-filters-sidebar-organizations />
     </section>
   </div>
 </template>
