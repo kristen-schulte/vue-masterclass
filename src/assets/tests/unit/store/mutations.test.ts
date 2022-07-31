@@ -1,28 +1,5 @@
 import mutations from "@/store/mutations";
-import { GlobalState } from "@/store/types";
-import { Job } from "@/api/types";
-import state from "@/store/state";
-
-function createState(config: Partial<GlobalState> = {}): GlobalState {
-  const initialState = state();
-  return { ...initialState, ...config };
-}
-
-function createJob(config: Partial<Job> = {}): Job {
-  return {
-    "id": 1,
-    "title": "Angular Developer",
-    "organization": "Vue and Me",
-    "degree": "Master's",
-    "jobType": "Intern",
-    "locations": ["Lisbon"],
-    "minimumQualifications": [],
-    "preferredQualifications": [],
-    "description": [],
-    "dateAdded": "2021-07-04",
-    ...config
-  };
-}
+import { createState, createJob } from "./utils";
 
 describe("mutations", () => {
   describe("LOGIN_USER", () => {

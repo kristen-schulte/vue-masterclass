@@ -1,30 +1,23 @@
 import getters from "@/store/getters";
+import { createState, createJob } from "./utils";
 
 describe("getters", () => {
   describe("UNIQUE_ORGANIZATIONS", () => {
     it("finds unique orgs from list of jobs", () => {
-      const state = {
-        jobs: [
-          { organization: "Google" },
-          { organization: "Amazon" },
-          { organization: "Google" },
-        ],
-      };
-      const result = getters.UNIQUE_ORGANIZATIONS(state);
+      const job1 = createJob({ organization: "Google" });
+      const job2 = createJob({ organization: "Amazon" });
+      const startingState = createState({ jobs: [job1, job2, job1] });
+      const result = getters.UNIQUE_ORGANIZATIONS(startingState);
       expect(result).toEqual(new Set(["Google", "Amazon"]));
     });
   });
 
   describe("UNIQUE_JOB_TYPES", () => {
     it("finds unique job types from list of jobs", () => {
-      const state = {
-        jobs: [
-          { jobType: "Full-time" },
-          { jobType: "Temporary" },
-          { jobType: "Full-time" },
-        ],
-      };
-      const result = getters.UNIQUE_JOB_TYPES(state);
+      const job1 = createJob({ jobType: "Full-time" });
+      const job2 = createJob({ jobType: "Temporary" });
+      const startingState = createState({ jobs: [job1, job2, job1] });
+      const result = getters.UNIQUE_JOB_TYPES(startingState);
       expect(result).toEqual(new Set(["Full-time", "Temporary"]));
     });
   });
@@ -32,21 +25,17 @@ describe("getters", () => {
   describe("INCLUDE_JOB_ORG", () => {
     describe("when no organizations selected", () => {
       it("includes job", () => {
-        const state = {
-          selectedOrganizations: [],
-        };
-        const job = { organization: "Google" };
-        const result = getters.INCLUDE_JOB_ORG(state)(job);
+        const startingState = createState({ selectedOrganizations: [] });
+        const job1 = createJob({ organization: "Google" });
+        const result = getters.INCLUDE_JOB_ORG(startingState)(job1);
         expect(result).toBe(true);
       });
     });
 
     it("identifies if job is in an organization", () => {
-      const state = {
-        selectedOrganizations: ["Google", "Microsoft", "Amazon"],
-      };
-      const job = { organization: "Google" };
-      const result = getters.INCLUDE_JOB_ORG(state)(job);
+      const startingState = createState({ selectedOrganizations: ["Google", "Microsoft", "Amazon"] });
+      const job1 = createJob({ organization: "Google" });
+      const result = getters.INCLUDE_JOB_ORG(startingState)(job1);
       expect(result).toBe(true);
     });
   });
@@ -54,21 +43,19 @@ describe("getters", () => {
   describe("INCLUDE_JOB_TYPE", () => {
     describe("when no job types selected", () => {
       it("includes job", () => {
-        const state = {
-          selectedJobTypes: [],
-        };
-        const job = { jobType: "Part-time" };
-        const result = getters.INCLUDE_JOB_TYPE(state)(job);
+        const startingState = createState({ selectedJobTypes: [] });
+        const job = createJob({ jobType: "Part-time" });
+        const result = getters.INCLUDE_JOB_TYPE(startingState)(job);
         expect(result).toBe(true);
       });
     });
 
     it("identifies if job is of a type", () => {
-      const state = {
+      const startingState = createState({
         selectedJobTypes: ["Full-time", "Part-time"],
-      };
-      const job = { jobType: "Part-time" };
-      const result = getters.INCLUDE_JOB_TYPE(state)(job);
+      });
+      const job = createJob({ jobType: "Part-time" });
+      const result = getters.INCLUDE_JOB_TYPE(startingState)(job);
       expect(result).toBe(true);
     });
   });
@@ -83,12 +70,9 @@ describe("getters", () => {
         INCLUDE_JOB_TYPE,
       };
 
-      const job = { id: 1, title: "Job I Found" };
-      const state = {
-        jobs: [job],
-      };
-
-      const result = getters.FILTERED_JOBS(state, mockGetters);
+      const job = createJob({ id: 1, title: "Job I Found" });
+      const startingState = createState({ jobs: [job] });
+      const result = getters.FILTERED_JOBS(startingState, mockGetters);
       expect(result).toEqual([job]);
       expect(INCLUDE_JOB_ORG).toHaveBeenCalledWith(job);
       expect(INCLUDE_JOB_TYPE).toHaveBeenCalledWith(job);
