@@ -25,6 +25,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { key } from "@/store";
 import Accordion from "@/components/Shared/Accordion.vue";
+import { CLEAR_FILTERS } from "@/store/constants";
 
 export default defineComponent({
   name: "JobFiltersSidebarCheckboxGroup",
@@ -58,6 +59,12 @@ export default defineComponent({
       store.commit(props.mutation, selectedValues.value);
       router.push({ name: "JobResults" });
     };
+
+    store.subscribe((mutation) => {
+      if (mutation.type === CLEAR_FILTERS) {
+        selectedValues.value = [];
+      }
+    });
 
     return {
       selectedValues,

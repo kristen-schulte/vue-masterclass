@@ -6,7 +6,11 @@
       <div class="flex flex-row justify-between">
         <h3 class="my-4 text-base font-semibold">What do you want to do?</h3>
         <div class="flex items-center text-sm">
-          <action-button text="Clear filters" type="secondary" />
+          <action-button
+            text="Clear filters"
+            type="secondary"
+            @click="clearFilters"
+          />
         </div>
       </div>
       <job-filters-sidebar-checkbox-group
@@ -33,6 +37,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useStore } from "vuex";
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import JobFiltersSidebarCheckboxGroup from "./JobFiltersSidebarCheckboxGroup.vue";
 import {
@@ -44,7 +49,9 @@ import {
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_ORGANIZATIONS,
   ADD_SELECTED_DEGREES,
+  CLEAR_FILTERS,
 } from "@/store/constants";
+import { key } from "@/store";
 
 export default defineComponent({
   name: "JobFiltersSidebar",
@@ -57,6 +64,9 @@ export default defineComponent({
     const uniqueOrgs = useUniqueOrgs();
     const uniqueDegrees = useUniqueDegrees();
 
+    const store = useStore(key);
+    const clearFilters = () => store.commit(CLEAR_FILTERS);
+
     return {
       uniqueJobTypes,
       uniqueOrgs,
@@ -64,6 +74,7 @@ export default defineComponent({
       ADD_SELECTED_JOB_TYPES,
       ADD_SELECTED_ORGANIZATIONS,
       ADD_SELECTED_DEGREES,
+      clearFilters,
     };
   },
 });
