@@ -1,11 +1,17 @@
 import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 import MainNav from "@/components/Navigation/MainNav.vue";
+import { GlobalState } from "@/store/types";
 
-function mockStore(isLoggedIn = false) {
+interface MockStore {
+  state: Partial<GlobalState>;
+  commit?: () => {}
+}
+
+function mockStore(isLoggedIn = false): MockStore {
   return { state: { isLoggedIn } };
 }
 
-function wrapperConfig($store) {
+function wrapperConfig($store: MockStore) {
   return {
     global: {
       mocks: {
