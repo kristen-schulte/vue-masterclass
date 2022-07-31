@@ -4,6 +4,7 @@ import {
   UNIQUE_JOB_TYPES,
   INCLUDE_JOB_ORG,
   INCLUDE_JOB_TYPE,
+  UNIQUE_DEGREES,
 } from "@/store/constants";
 import { GlobalState } from "@/store/types";
 import { Job } from "@/api/types";
@@ -27,6 +28,9 @@ const getters = {
       uniqueJobTypes.add(job.jobType);
     });
     return uniqueJobTypes;
+  },
+  [UNIQUE_DEGREES]: (state: GlobalState) => {
+    return state.degrees.map((item) => item.degree);
   },
   [INCLUDE_JOB_ORG]: (state: GlobalState) => (job: Job) => {
     if (state.selectedOrganizations.length === 0) return true;

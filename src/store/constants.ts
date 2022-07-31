@@ -20,3 +20,4 @@ export const INCLUDE_JOB_TYPE = "INCLUDE_JOB_TYPE";
 /** Degrees */
 export const RECEIVE_DEGREES = "RECEIVE_DEGREES";
 export const FETCH_DEGREES = "FETCH_DEGREES";
+export const UNIQUE_DEGREES = "UNIQUE_DEGREES";
