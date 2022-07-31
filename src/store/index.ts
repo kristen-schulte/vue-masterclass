@@ -9,7 +9,6 @@ const store = createStore({
   getters,
   mutations,
   actions,
-  // modules: {},
   strict: process.env.NODE_ENV !== "production",
 });
 
