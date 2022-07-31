@@ -33,40 +33,52 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+import { useFilteredJobs } from "@/store/composables";
 import JobListing from "./JobListing.vue";
-import { FETCH_JOBS, FILTERED_JOBS } from "@/store/constants";
+import { FETCH_JOBS } from "@/store/constants";
 
 export default {
   name: "JobListings",
   components: {
     JobListing,
   },
-  computed: {
-    ...mapGetters([FILTERED_JOBS]),
-    currentPage() {
-      return Number.parseInt(this.$route.query.page || "1");
-    },
-    previousPage() {
-      return this.currentPage > 1 ? this.currentPage - 1 : undefined;
-    },
-    nextPage() {
-      return this.currentPage < Math.ceil(this.FILTERED_JOBS.length / 10)
-        ? this.currentPage + 1
-        : undefined;
-    },
-    displayedJobs() {
-      const page = this.currentPage;
+  setup() {
+    const store = useStore();
+    const fetchJobs = () => store.dispatch(FETCH_JOBS);
+    onMounted(fetchJobs);
+
+    const filteredJobs = useFilteredJobs();
+
+    const route = useRoute();
+    const currentPage = computed(() =>
+      Number.parseInt(route.query.page || "1")
+    );
+    const previousPage = computed(() => {
+      const previous = currentPage.value - 1;
+      return previous >= 1 ? previous : undefined;
+    });
+    const nextPage = computed(() => {
+      const next = currentPage.value + 1;
+      const max = Math.ceil(filteredJobs.value.length / 10);
+      return next <= max ? next : undefined;
+    });
+
+    const displayedJobs = computed(() => {
+      const page = currentPage.value;
       const start = (page - 1) * 10;
       const end = 10 * page;
-      return this.FILTERED_JOBS.slice(start, end);
-    },
-  },
-  async mounted() {
-    this.FETCH_JOBS();
-  },
-  methods: {
-    ...mapActions([FETCH_JOBS]),
+      return filteredJobs.value.slice(start, end);
+    });
+
+    return {
+      currentPage,
+      previousPage,
+      nextPage,
+      displayedJobs,
+    };
   },
 };
 </script>
