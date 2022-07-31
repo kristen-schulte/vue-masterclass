@@ -7,6 +7,6 @@ export interface Job {
   locations: string[],
   minimumQualifications: string[],
   preferredQualifications: string[],
-  descriptions: string[],
+  description: string[],
   dateAdded: string
 }
