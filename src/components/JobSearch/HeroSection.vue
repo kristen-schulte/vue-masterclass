@@ -38,16 +38,17 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import Headline from "./Headline.vue";
 import JobSearchForm from "./JobSearchForm.vue";
 import Spotlight from "./Spotlight.vue";
-export default {
+export default defineComponent({
   name: "HeroSection",
   components: {
     Headline,
     JobSearchForm,
     Spotlight,
   },
-};
+});
 </script>
