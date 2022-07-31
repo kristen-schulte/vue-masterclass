@@ -36,7 +36,11 @@
 import { computed, onMounted, defineComponent } from "vue";
 import useCurrentPage from "@/composables/useCurrentPage";
 import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
-import { useFilteredJobs, useFetchJobsDispatch } from "@/store/composables";
+import {
+  useFilteredJobs,
+  useFetchJobsDispatch,
+  useFetchDegreesDispatch,
+} from "@/store/composables";
 import JobListing from "./JobListing.vue";
 
 export default defineComponent({
@@ -47,6 +51,7 @@ export default defineComponent({
   setup() {
     const jobsPerPage = 10;
     onMounted(useFetchJobsDispatch);
+    onMounted(useFetchDegreesDispatch);
     const filteredJobs = useFilteredJobs();
     const currentPage = useCurrentPage();
     const maxPage = computed(() =>
