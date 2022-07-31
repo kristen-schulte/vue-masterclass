@@ -61,4 +61,18 @@ describe("mutations", () => {
       expect(startingState.selectedDegrees).toEqual(["Degree 1", "Degree 2"]);
     });
   })
+
+  describe("CLEAR_FILTERS", () => {
+    it("removes selected filters", () => {
+      const startingState = createState({
+        selectedOrganizations: ["Org 1"],
+        selectedJobTypes: ["Type 1"],
+        selectedDegrees: ["Degree 1"]
+      });
+      mutations.CLEAR_FILTERS(startingState);
+      expect(startingState.selectedOrganizations).toEqual([]);
+      expect(startingState.selectedJobTypes).toEqual([]);
+      expect(startingState.selectedDegrees).toEqual([]);
+    })
+  })
 });
