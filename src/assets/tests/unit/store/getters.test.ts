@@ -92,6 +92,37 @@ describe("getters", () => {
     });
   });
 
+  describe("INCLUDE_JOB_SKILL", () => {
+    it("idenfities if job matches skills search term", () => {
+      const startingState = createState({
+        skillsSearchTerm: "Vue"
+      });
+      const job = createJob({ title: "Vue Developer" });
+      const include = getters.INCLUDE_JOB_SKILL(startingState)(job);
+      expect(include).toBe(true);
+    });
+
+    it("handles inconsistent character casing", () => {
+      const startingState = createState({
+        skillsSearchTerm: "vuE"
+      });
+      const job = createJob({ title: "Vue Developer" });
+      const include = getters.INCLUDE_JOB_SKILL(startingState)(job);
+      expect(include).toBe(true);
+    });
+
+    describe("when the search term is empty", () => {
+      it("includes job", () => {
+        const startingState = createState({
+          skillsSearchTerm: ""
+        });
+        const job = createJob({ title: "Vue Developer" });
+        const include = getters.INCLUDE_JOB_SKILL(startingState)(job);
+        expect(include).toBe(true);
+      })
+    })
+  });
+
   describe("FILTERED_JOBS", () => {
     it("filters jobs by organization, job type, and degree", () => {
       const INCLUDE_JOB_ORG = jest.fn().mockReturnValue(true);

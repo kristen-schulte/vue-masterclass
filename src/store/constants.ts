@@ -26,6 +26,7 @@ export const ADD_SELECTED_DEGREES = "ADD_SELECTED_DEGREES";
 
 /** Skills */
 export const UPDATE_SKILLS_SEARCH_TERM = "UPDATE_SKILLS_SEARCH_TERM";
+export const INCLUDE_JOB_SKILL = "INCLUDE_JOB_SKILL";
 
 /** Filters */
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
