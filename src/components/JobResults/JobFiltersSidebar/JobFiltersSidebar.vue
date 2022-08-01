@@ -13,9 +13,15 @@
           />
         </div>
       </div>
-      <job-filters-sidebar-degrees />
-      <job-filters-sidebar-types />
-      <job-filters-sidebar-organizations />
+      <accordion header="Degrees">
+        <job-filters-sidebar-degrees />
+      </accordion>
+      <accordion header="Job Types">
+        <job-filters-sidebar-types />
+      </accordion>
+      <accordion header="Organizations">
+        <job-filters-sidebar-organizations />
+      </accordion>
     </section>
   </div>
 </template>
@@ -23,6 +29,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "vuex";
+import Accordion from "@/components/Shared/Accordion.vue";
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import JobFiltersSidebarDegrees from "./JobFiltersSidebarDegrees.vue";
 import JobFiltersSidebarTypes from "./JobFiltersSidebarTypes.vue";
@@ -34,6 +41,7 @@ export default defineComponent({
   name: "JobFiltersSidebar",
   components: {
     ActionButton,
+    Accordion,
     JobFiltersSidebarDegrees,
     JobFiltersSidebarTypes,
     JobFiltersSidebarOrganizations,

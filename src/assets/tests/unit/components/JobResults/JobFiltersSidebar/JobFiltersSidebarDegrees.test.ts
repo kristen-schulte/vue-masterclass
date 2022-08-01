@@ -13,7 +13,6 @@ describe("JobFiltersSidebarDegrees", () => {
     useUniqueDegreesMock.mockReturnValue(["Associate", "Bachelor's"]);
     const wrapper = shallowMount(JobFiltersSidebarDegrees);
     const filter = wrapper.findComponent({ name: "JobFiltersSidebarCheckboxGroup" });
-    // wrapper.findComponent("[data-test='degrees-filter']");
     const { uniqueValues, mutation } = filter.props();
     expect(uniqueValues).toEqual(["Associate", "Bachelor's"]);
     expect(mutation).toBe("ADD_SELECTED_DEGREES");

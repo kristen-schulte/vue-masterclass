@@ -13,7 +13,6 @@ describe("JobFiltersSidebarOrganizations", () => {
     useUniqueOrgsMock.mockReturnValue(new Set(["AirBnB"]));
     const wrapper = shallowMount(JobFiltersSidebarOrganizations);
     const filter = wrapper.findComponent({ name: "JobFiltersSidebarCheckboxGroup" });
-    // wrapper.findComponent("[data-test='organizations-filter']");
     const { uniqueValues, mutation } = filter.props();
     expect(uniqueValues).toEqual(new Set(["AirBnB"]));
     expect(mutation).toBe("ADD_SELECTED_ORGANIZATIONS");
