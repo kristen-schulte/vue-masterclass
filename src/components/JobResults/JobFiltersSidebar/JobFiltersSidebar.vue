@@ -4,6 +4,9 @@
   >
     <section class="pb-5">
       <job-filters-sidebar-prompt />
+      <accordion header="Skills and Qualifications">
+        <job-filters-sidebar-skills />
+      </accordion>
       <accordion header="Degrees">
         <job-filters-sidebar-degrees />
       </accordion>
@@ -20,6 +23,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import JobFiltersSidebarPrompt from "./JobFiltersSidebarPrompt.vue";
+import JobFiltersSidebarSkills from "./JobFiltersSidebarSkills.vue";
 import Accordion from "@/components/Shared/Accordion.vue";
 import JobFiltersSidebarDegrees from "./JobFiltersSidebarDegrees.vue";
 import JobFiltersSidebarTypes from "./JobFiltersSidebarTypes.vue";
@@ -30,6 +34,7 @@ export default defineComponent({
   components: {
     JobFiltersSidebarPrompt,
     Accordion,
+    JobFiltersSidebarSkills,
     JobFiltersSidebarDegrees,
     JobFiltersSidebarTypes,
     JobFiltersSidebarOrganizations,
