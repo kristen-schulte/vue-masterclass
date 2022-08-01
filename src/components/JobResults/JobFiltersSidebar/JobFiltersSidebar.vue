@@ -13,24 +13,9 @@
           />
         </div>
       </div>
-      <job-filters-sidebar-checkbox-group
-        header="Degrees"
-        :unique-values="uniqueDegrees"
-        :mutation="ADD_SELECTED_DEGREES"
-        data-test="degrees-filter"
-      />
-      <job-filters-sidebar-checkbox-group
-        header="Job Types"
-        :unique-values="uniqueJobTypes"
-        :mutation="ADD_SELECTED_JOB_TYPES"
-        data-test="job-types-filter"
-      />
-      <job-filters-sidebar-checkbox-group
-        header="Organizations"
-        :unique-values="uniqueOrgs"
-        :mutation="ADD_SELECTED_ORGANIZATIONS"
-        data-test="organizations-filter"
-      />
+      <job-filters-sidebar-degrees />
+      <job-filters-sidebar-types />
+      <job-filters-sidebar-organizations />
     </section>
   </div>
 </template>
@@ -39,43 +24,25 @@
 import { defineComponent } from "vue";
 import { useStore } from "vuex";
 import ActionButton from "@/components/Shared/ActionButton.vue";
-import JobFiltersSidebarCheckboxGroup from "./JobFiltersSidebarCheckboxGroup.vue";
-import {
-  useUniqueJobTypes,
-  useUniqueOrgs,
-  useUniqueDegrees,
-} from "@/store/composables";
-import {
-  ADD_SELECTED_JOB_TYPES,
-  ADD_SELECTED_ORGANIZATIONS,
-  ADD_SELECTED_DEGREES,
-  CLEAR_FILTERS,
-} from "@/store/constants";
+import JobFiltersSidebarDegrees from "./JobFiltersSidebarDegrees.vue";
+import JobFiltersSidebarTypes from "./JobFiltersSidebarTypes.vue";
+import JobFiltersSidebarOrganizations from "./JobFiltersSidebarOrganizations.vue";
+import { CLEAR_FILTERS } from "@/store/constants";
 import { key } from "@/store";
 
 export default defineComponent({
   name: "JobFiltersSidebar",
   components: {
     ActionButton,
-    JobFiltersSidebarCheckboxGroup,
+    JobFiltersSidebarDegrees,
+    JobFiltersSidebarTypes,
+    JobFiltersSidebarOrganizations,
   },
   setup() {
-    const uniqueJobTypes = useUniqueJobTypes();
-    const uniqueOrgs = useUniqueOrgs();
-    const uniqueDegrees = useUniqueDegrees();
-
     const store = useStore(key);
     const clearFilters = () => store.commit(CLEAR_FILTERS);
 
-    return {
-      uniqueJobTypes,
-      uniqueOrgs,
-      uniqueDegrees,
-      ADD_SELECTED_JOB_TYPES,
-      ADD_SELECTED_ORGANIZATIONS,
-      ADD_SELECTED_DEGREES,
-      clearFilters,
-    };
+    return { clearFilters };
   },
 });
 </script>
