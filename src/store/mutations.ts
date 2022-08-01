@@ -7,6 +7,7 @@ import {
   RECEIVE_DEGREES,
   ADD_SELECTED_DEGREES,
   CLEAR_FILTERS,
+  UPDATE_SKILLS_SEARCH_TERM,
 } from "./constants";
 import { GlobalState } from "@/store/types";
 import { Degree, Job } from "@/api/types";
@@ -32,6 +33,9 @@ const mutations = {
   },
   [ADD_SELECTED_DEGREES](state: GlobalState, degrees: string[]) {
     state.selectedDegrees = degrees;
+  },
+  [UPDATE_SKILLS_SEARCH_TERM](state: GlobalState, term: string) {
+    state.skillsSearchTerm = term;
   },
   [CLEAR_FILTERS](state: GlobalState) {
     state.selectedOrganizations = [];

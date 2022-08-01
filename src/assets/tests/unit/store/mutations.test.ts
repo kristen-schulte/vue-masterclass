@@ -60,7 +60,15 @@ describe("mutations", () => {
       mutations.ADD_SELECTED_DEGREES(startingState, ["Degree 1", "Degree 2"]);
       expect(startingState.selectedDegrees).toEqual(["Degree 1", "Degree 2"]);
     });
-  })
+  });
+
+  describe("UPDATE_SKILLS_SEARCH_TERM", () => {
+    it("receives search term for skills and qualifications", () => {
+      const startingState = createState({ skillsSearchTerm: "" });
+      mutations.UPDATE_SKILLS_SEARCH_TERM(startingState, "Vue");
+      expect(startingState.skillsSearchTerm).toBe("Vue");
+    })
+  });
 
   describe("CLEAR_FILTERS", () => {
     it("removes selected filters", () => {
