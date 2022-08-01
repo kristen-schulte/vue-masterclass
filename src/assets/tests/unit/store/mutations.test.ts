@@ -81,6 +81,7 @@ describe("mutations", () => {
       expect(startingState.selectedOrganizations).toEqual([]);
       expect(startingState.selectedJobTypes).toEqual([]);
       expect(startingState.selectedDegrees).toEqual([]);
+      expect(startingState.skillsSearchTerm).toBe("");
     })
   })
 });
