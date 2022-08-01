@@ -128,11 +128,13 @@ describe("getters", () => {
       const INCLUDE_JOB_ORG = jest.fn().mockReturnValue(true);
       const INCLUDE_JOB_TYPE = jest.fn().mockReturnValue(true);
       const INCLUDE_JOB_DEGREE = jest.fn().mockReturnValue(true);
+      const INCLUDE_JOB_SKILL = jest.fn().mockReturnValue(true);
 
       const mockGetters = {
         INCLUDE_JOB_ORG,
         INCLUDE_JOB_TYPE,
-        INCLUDE_JOB_DEGREE
+        INCLUDE_JOB_DEGREE,
+        INCLUDE_JOB_SKILL
       };
 
       const job = createJob({ id: 1, title: "Job I Found" });
@@ -142,6 +144,7 @@ describe("getters", () => {
       expect(INCLUDE_JOB_ORG).toHaveBeenCalledWith(job);
       expect(INCLUDE_JOB_TYPE).toHaveBeenCalledWith(job);
       expect(INCLUDE_JOB_DEGREE).toHaveBeenCalledWith(job);
+      expect(INCLUDE_JOB_SKILL).toHaveBeenCalledWith(job);
     });
   });
 });

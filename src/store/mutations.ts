@@ -41,6 +41,7 @@ const mutations = {
     state.selectedOrganizations = [];
     state.selectedJobTypes = [];
     state.selectedDegrees = [];
+    state.skillsSearchTerm = "";
   }
 };
 
