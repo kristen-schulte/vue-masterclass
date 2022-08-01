@@ -8,18 +8,14 @@ import JobFiltersSidebarTypes from "@/components/JobResults/JobFiltersSidebar/Jo
 
 
 describe("JobFiltersSidebarTypes", () => {
-  it("freebie", () => {
-    expect("true").toBe("true");
-  })
-
-  // Can't find component. Don't know why.
-  // it("allows user to filter jobs by job types", () => {
-  //   useUniqueJobTypesMock.mockReturnValue(new Set(["Full-time", "Part-time"]));
-  //   const wrapper = shallowMount(JobFiltersSidebarTypes);
-  //   const filter = wrapper.findComponent({ name: 'JobFiltersSidebarCheckboxGroup' });
-  //   console.log(filter);
-  //   const { uniqueValues, mutation } = filter.props();
-  //   expect(uniqueValues).toEqual(new Set(["Full-time", "Part-time"]));
-  //   expect(mutation).toBe("ADD_SELECTED_JOB_TYPES");
-  // });
+  // Can't find component. Don't know why. Neither search method works.
+  it("allows user to filter jobs by job types", () => {
+    useUniqueJobTypesMock.mockReturnValue(new Set(["Full-time", "Part-time"]));
+    const wrapper = shallowMount(JobFiltersSidebarTypes);
+    const filter = wrapper.findComponent({ name: "JobFiltersSidebarCheckboxGroup" });
+    // wrapper.findComponent("[data-test='job-types-filter']");
+    const { uniqueValues, mutation } = filter.props();
+    expect(uniqueValues).toEqual(new Set(["Full-time", "Part-time"]));
+    expect(mutation).toBe("ADD_SELECTED_JOB_TYPES");
+  });
 })
