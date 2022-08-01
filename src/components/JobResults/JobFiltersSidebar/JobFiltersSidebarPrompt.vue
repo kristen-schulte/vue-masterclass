@@ -5,6 +5,7 @@
       <action-button
         text="Clear filters"
         type="secondary"
+        data-test="clear-filters"
         @click="clearFilters"
       />
     </div>
