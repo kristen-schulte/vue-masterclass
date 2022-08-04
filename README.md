@@ -16,4 +16,4 @@ We converted much of the code to TypeScript from JavaScript in sections 32 and 3
 
 ### End of section 33
 
-![TypeScript 62.5% Vue 33.2% JavaScript 2.8% HTML 1.4% CSS 0.1%](https://github.com/kristen-schulte/vue-masterclass/blob/main/process/Screenshot%202022-07-31%20131124.png?raw=true)
+![TypeScript 62.5% Vue 33.2% JavaScript 2.8% HTML 1.4% CSS 0.1%](https://github.com/kristen-schulte/vue-masterclass/blob/main/process/Screenshot%202022-07-31%20154258.png?raw=true)
